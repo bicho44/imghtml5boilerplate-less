@@ -1,20 +1,116 @@
 // Scheme Definitions
+/* Color Base for the Scheme */
+@base-color: #007C99;
 
 /* Fonts */
-@font-size: 13px;
-@line-height: 1.234;
+@font-family: sans-serif;
+@font-size: 16px;
+@line-height: 1.231;
 
 /* Colors */
-@color-text: #222;
+@color-text: @base-color;
 
 /* Links */
-@link-color:  #00e;
-@link-hover:  #00e;
-@link-visited: #551a8b;
+@link-color:  @base-color;
+@link-hover:  @complement;
+@link-visited: @white;
 
 /* selection declarations */
 @select-back-color: #fe57a1;
 @select-color: #fff;
+
+// Grays
+@black: #000;
+@gray-dark: lighten(@black, 25%);
+@gray: lighten(@black, 50%);
+@gray-light: lighten(@black, 70%);
+@gray-lighter: lighten(@black, 90%);
+@white: #fff;
+
+// Auto Color Scheme
+
+/* Complement Color */
+@complement: spin(@base-color, 180);
+
+/* Split Complements */
+@split1: spin(@base-color, 158);
+@split2: spin(@base-color, -158);
+
+/* Triads Colors */
+@triad1: spin(@base-color, 135);
+@triad2: spin(@base-color, -135);
+
+/* Tetra Colors */
+@tetra1: spin(@base-color, 90);
+@tetra2: spin(@base-color, -90);
+
+/* Analogs Colors */
+@analog1: spin(@base-color, 22);
+@analog2: spin(@base-color, -22);
+
+// Accent Colors
+@blue: #00b3ee;
+@green: #46a546;
+@red: #9d261d;
+@yellow: #ffc40d;
+@orange: #f89406;
+@pink: #c3325f;
+@purple: #7a43b6;
+
+
+// Font Stacks
+#font {
+    .shorthand(@weight: normal, @size: @font-size, @lineHeight:  @line-height) {
+        font-size: @size;
+        font-weight: @weight;
+        line-height: @lineHeight;
+    }
+    .sans-serif(@weight: normal, @size: @font-size, @lineHeight: @line-height) {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: @size;
+        font-weight: @weight;
+        line-height: @lineHeight;
+    }
+    .serif(@weight: normal, @size: @font-size, @lineHeight: @line-height) {
+        font-family: "Georgia", Times New Roman, Times, sans-serif;
+        font-size: @size;
+        font-weight: @weight;
+        line-height: @lineHeight;
+    }
+    .monospace(@weight: normal, @size: @font-size, @lineHeight: @line-height) {
+        font-family: "Monaco", Courier New, monospace;
+        font-size: @size;
+        font-weight: @weight;
+        line-height: @lineHeight;
+    }
+}
+
+
+// Griditude
+@gridColumns:       24;
+@gridColumnWidth:   30px;
+@gridGutterWidth:   10px;
+@siteWidth:         (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+  
+  // Grid System
+.container() {
+  width: @siteWidth;
+  margin: 0 auto;
+  .clearfix();
+}
+.columns(@columnSpan: 1) {
+  display: inline;
+  float: left;
+  width: (@gridColumnWidth * @columnSpan) + (@gridGutterWidth * (@columnSpan - 1));
+  margin-left: @gridGutterWidth;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+.offset(@columnOffset: 1) {
+  margin-left: (@gridColumnWidth * @columnOffset) + (@gridGutterWidth * (@columnOffset - 1)) !important;
+}
 
 
 /* HTML5 Boilerplate LESS items
